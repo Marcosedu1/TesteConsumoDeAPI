@@ -1,0 +1,15 @@
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\bin\Debug\net6.0\TesteConsumoDeAPI.exe
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\bin\Debug\net6.0\TesteConsumoDeAPI.deps.json
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\bin\Debug\net6.0\TesteConsumoDeAPI.runtimeconfig.json
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\bin\Debug\net6.0\TesteConsumoDeAPI.dll
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\bin\Debug\net6.0\TesteConsumoDeAPI.pdb
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.csproj.AssemblyReference.cache
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.AssemblyInfoInputs.cache
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.AssemblyInfo.cs
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.csproj.CoreCompileInputs.cache
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.dll
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\refint\TesteConsumoDeAPI.dll
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.pdb
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\TesteConsumoDeAPI.genruntimeconfig.cache
+C:\Users\Marcos Eduardo\Documents\Projects\TesteConsumoDeAPI\obj\Debug\net6.0\ref\TesteConsumoDeAPI.dll
