@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
+using System.Net.Http.Json;
 
 namespace TesteConsumoDeAPI
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.WriteLine("Digite um CEP Válido");
             string cepString = Console.ReadLine();
@@ -31,87 +22,31 @@ namespace TesteConsumoDeAPI
             }
             if (cepString.Length == 8)
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://viacep.com.br/ws/" + cepString + "/json/");
-                request.AllowAutoRedirect = false;
-                HttpWebResponse ChecaServidor = (HttpWebResponse)request.GetResponse();
-
-                if (ChecaServidor.StatusCode != HttpStatusCode.OK)
+                using HttpClient client = new()
                 {
-                    Console.WriteLine("Servidor indisponível");
-                    return; // Sai da rotina
-                }
+                    BaseAddress = new Uri("https://viacep.com.br/ws/")
+                };
 
-                using (Stream webStream = ChecaServidor.GetResponseStream())
-                {
-                    if (webStream != null)
-                    {
-                        using (StreamReader responseReader = new StreamReader(webStream))
-                        {
-                            string response = responseReader.ReadToEnd();
-                            response = Regex.Replace(response, "[{},]", string.Empty);
-                            response = response.Replace("\"", "");
+                ViaCep? cep = await client.GetFromJsonAsync<ViaCep>(cepString + "/json/");
 
-                            String[] substrings = response.Split('\n');
+                HttpResponseMessage response = await client.PostAsJsonAsync("CEP", cep);
 
-                            int cont = 0;
-                            foreach (var substring in substrings)
-                            {
-                                if (cont == 1)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray());
-                                    if (valor[0] == "  erro")
-                                    {
-                                        Console.WriteLine("CEP não encontrado");
-                                        return;
-                                    }
-                                }
+                Console.WriteLine($"CEP: {cep?.cep}");
+                Console.WriteLine($"Logradouro: {cep?.logradouro}");
+                Console.WriteLine($"Complemento: {cep?.complemento}");
+                Console.WriteLine($"Localidade: {cep?.localidade}");
+                Console.WriteLine($"UF: {cep?.uf}");
+                Console.WriteLine($"IBGE: {cep?.ibge}");
+                Console.WriteLine($"GIA: {cep?.gia}");
+                Console.WriteLine($"DDD: {cep?.ddd}");
+                Console.WriteLine($"SIAFI: {cep?.siafi}");
 
-                                //Logradouro
-                                if (cont == 2)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray());
-                                    Console.WriteLine($"\nLogradouro:{valor[1].ToString()}");
-                                }
-
-                                //Complemento
-                                if (cont == 3)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray()); 
-                                    Console.WriteLine($"Complemento:{valor[1].ToString()}");
-                                }
-
-                                //Bairro
-                                if (cont == 4)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray());
-                                    Console.WriteLine($"Bairro:{valor[1].ToString()}");
-                                }
-
-                                //Localidade (Cidade)
-                                if (cont == 5)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray());
-                                    Console.WriteLine($"Cidade:{valor[1].ToString()}");
-                                }
-
-                                //Estado (UF)
-                                if (cont == 6)
-                                {
-                                    string[] valor = substring.Split(":".ToCharArray());
-                                    Console.WriteLine($"Estado:{valor[1].ToString()}");
-                                }
-                                cont++;
-
-                                //Créditos: https://www.blogson.com.br/busca-automatica-de-cep-em-c-windows-forms/
-                            }
-                        }
-                    }
-                }
+                //https://docs.microsoft.com/pt-br/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
             }
             else
             {
                 Console.WriteLine("Finalizando Programa");
-            }            
+            }
         }
     }
 }
